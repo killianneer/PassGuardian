@@ -16,9 +16,21 @@ const openai = new OpenAIApi(configuration);
 // FUNCTIONS
 
 async function generatePassword(length,uppercase,symbols,numbers) {
+  var requestgpt = `Generate 5 passwords seperated by commas of different formats with the following caracteristics : length of ${length},`
+  if (uppercase == true){
+    requestgpt += ` ${uppercase} uppercase letters,`
+  }
+  if (symbols == true){
+    requestgpt += ` ${symbols} symbols,`
+  }
+  if (numbers == true){
+    requestgpt += ` ${numbers} numbers.`
+  }
+
+
   const response = await openai.createCompletion({
     model: "text-davinci-003",
-    prompt: `Generate 5 passwords seperated by commas of different formats with the following caracteristics : length of ${length}, ${uppercase} uppercase letters, ${symbols} symbols and ${numbers} numbers.`,
+    prompt: requestgpt,
     temperature: 0.7,
     max_tokens: 256,
   });

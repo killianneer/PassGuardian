@@ -7,5 +7,3 @@ function submitGenerate(length,uppercase,symbols,numbers){
     });
 
 }
-
-submitGenerate(10,true,true,true);

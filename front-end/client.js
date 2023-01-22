@@ -1,4 +1,4 @@
-const socket = io("http://137.184.57.78:3000");
+const socket = io("http://137.184.74.124:3000");
 
 
 function submitGenerate(length,uppercase,symbols,numbers){

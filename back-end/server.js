@@ -2,7 +2,7 @@
 
 const httpServer = require("http").createServer();
 const io =require("socket.io")(httpServer, {
-  // ...
+  cors: { origin: "http://137.184.74.124",methods: ["GET", "POST"] }
 });
 
 // LIBRARY DECLARATION
@@ -16,25 +16,26 @@ const openai = new OpenAIApi(configuration);
 // FUNCTIONS
 
 async function generatePassword(length,uppercase,symbols,numbers) {
+  var response = false;
   var requestgpt = `Generate 5 passwords seperated by commas of different formats with the following caracteristics : length of ${length},`
   if (uppercase == true){
-    requestgpt += ` ${uppercase} uppercase letters,`
+    requestgpt += ` with uppercase letters,`
   }
   if (symbols == true){
-    requestgpt += ` ${symbols} symbols,`
+    requestgpt += ` with symbols,`
   }
   if (numbers == true){
-    requestgpt += ` ${numbers} numbers.`
+    requestgpt += ` with numbers.`
   }
 
-
-  const response = await openai.createCompletion({
+  console.log(requestgpt)
+  response = await openai.createCompletion({
     model: "text-davinci-003",
     prompt: requestgpt,
     temperature: 0.7,
     max_tokens: 256,
   });
-  return response;
+  setTimeout(() => {  console.log(response["data"]["choices"][0]["text"]);return response["data"]["choices"][0]["text"] }, 10000);
 }
 
 

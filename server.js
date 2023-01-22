@@ -17,31 +17,31 @@ const openai = new OpenAIApi(configuration);
 
 async function generatePassword(length,uppercase,symbols,numbers) {
   var response = false;
-  var requestgpt = `Generate 3 long readable pass-phrase seperated by commas with the following charateristics : with a minimum of fifty characters,`
+  var requestgpt = `Generate three random sequences of characters of length ${length} that contains `
   if (uppercase == true){
-    requestgpt += ` with uppercase letters,`
+    requestgpt += ` uppercase letters,`
   }
   if (uppercase == false){
-    requestgpt += ' without uppercase letters,'
+    requestgpt += ' no uppercase letters,'
   }
   if (symbols == true){
-    requestgpt += ` with symbols,`
+    requestgpt += `,with symbols,`
   }
   if (symbols == false){
-    requestgpt += ` without symbols,`
+    requestgpt += ` ,no symbols,`
   }
   if (numbers == true){
-    requestgpt += ` with numbers.`
+    requestgpt += ` and numbers.`
   }
   if (numbers == false){
-    requestgpt += ` without numbers.`
+    requestgpt += `and no numbers.`
   }
 
   console.log(requestgpt)
   var gpt = await openai.createCompletion({
     model: "text-davinci-003",
     prompt: requestgpt,
-    temperature: 0.7,
+    temperature: 0.6,
     max_tokens: 256,
   });
   response = gpt.data.choices[0].text;

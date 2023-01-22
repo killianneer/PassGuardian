@@ -18,7 +18,7 @@ const openai = new OpenAIApi(configuration);
 async function generatePassword(length,uppercase,symbols,numbers) {
   var response = false;
   var firstFalse = false;
-  var requestgpt = `Generate three secure passwords from words that are related with the keyword ${length}. Feel free to use any character types.`
+  var requestgpt = `Generate a list of three secure passwords from words that are related with the keyword ${length}. Feel free to use any character types.`
 
   if (uppercase == false){
     if (firstFalse == false){
@@ -53,6 +53,9 @@ async function generatePassword(length,uppercase,symbols,numbers) {
   if (numbers == false){
     response = response.replace(/[0-9]/g, "");
   }
+  response = response.replace("1.", "");
+  response = response.replace("2.", "");
+  response = response.replace("3.", "");
   return response;
 }
 

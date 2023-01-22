@@ -59,7 +59,7 @@ function submitEvaluate(password){
         console.log("contains uppercase");
         numberofPos += 26;
     }
-    var time = Math.pow(numberofPos,password.length)/200000000000;
+    var time = Math.pow(numberofPos,password.length)/20000000000000;
     time = (((time/3600)/24)/365);
     
     console.log(time);

@@ -44,7 +44,6 @@ async function generatePassword(length,uppercase,symbols,numbers) {
     temperature: 0.7,
     max_tokens: 256,
   });
-  // response = gpt["data"]["choices"][0]["text"]
   response = gpt.data.choices[0].text;
   console.log(response);
   return response;

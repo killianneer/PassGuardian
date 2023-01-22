@@ -2,6 +2,9 @@
 <html>
 <head>
 <title>PassGuardian</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600&display=swap" rel="stylesheet">
 </head>
 <style>
 
@@ -26,11 +29,15 @@
         text-align: center;
     }
 
+    .font{
+        font-family: 'Quicksand', sans-serif;
+    }
+
 </style>
 <body>  
     <script src="https://cdn.socket.io/socket.io-3.0.0.js"></script>
     <script src="./client.js"></script>
-    <div class="header">
+    <div class="font header">
         <h1>PassGuardian<img src="./front-end/assets/PassGuardianLogo1.PNG" alt="logo" /></h1>
     </div>
 
@@ -38,14 +45,14 @@
 <br>
 <br>
 <br>
-<div class="generate_button">
-    <a href="./html/passwordgenerationpage.html"> Generate</a>
+<div class="font generate_button">
+    <a href="./front-end/html/passwordgenerationpage.html"> Generate</a>
 </div>
 <br>
 <br>
 
-<div class="evaluate_button">
-    <button>Evaluate</button>
+<div class="font evaluate_button">
+    <a href="./front-end/html/passwordevaluationpage.html">Evaluate</a>
 </div>
 </body>
 

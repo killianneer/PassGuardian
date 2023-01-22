@@ -44,7 +44,7 @@ async function generatePassword(length,uppercase,symbols,numbers) {
     temperature: 0.7,
     max_tokens: 256,
   });
-  setTimeout(() => {  console.log(response["data"]["choices"][0]["text"]);return response["data"]["choices"][0]["text"] }, 500);
+  setTimeout(() => {  console.log(response["data"]["choices"][0]["text"]);return response["data"]["choices"][0]["text"] }, 5000);
 }
 
 

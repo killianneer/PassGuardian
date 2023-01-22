@@ -17,15 +17,24 @@ const openai = new OpenAIApi(configuration);
 
 async function generatePassword(length,uppercase,symbols,numbers) {
   var response = false;
-  var requestgpt = `Generate 5 passwords seperated by commas of different formats with the following caracteristics : length of ${length},`
+  var requestgpt = `Generate 3 long readable pass-phrase seperated by commas with the following charateristics : with a minimum of fifty characters,`
   if (uppercase == true){
     requestgpt += ` with uppercase letters,`
+  }
+  if (uppercase == false){
+    requestgpt += ' without uppercase letters,'
   }
   if (symbols == true){
     requestgpt += ` with symbols,`
   }
+  if (symbols == false){
+    requestgpt += ` without symbols,`
+  }
   if (numbers == true){
     requestgpt += ` with numbers.`
+  }
+  if (numbers == false){
+    requestgpt += ` without numbers.`
   }
 
   console.log(requestgpt)

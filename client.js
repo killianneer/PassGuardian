@@ -40,7 +40,7 @@ function submitEvaluate(password){
     // check if password contains uppercase
     var containsUppercase = false;
     for (var i = 0; i < password.length; i++) {
-        if (password.charAt(i) == password.charAt(i).toUpperCase()) {
+        if (password.charCodeAt(i) >= 65 && password.charCodeAt(i) <= 95) {
             containsUppercase = true;
             break;
         }

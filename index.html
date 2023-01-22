@@ -7,53 +7,90 @@
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600&display=swap" rel="stylesheet">
 </head>
 <style>
+    body{
+        background-color: #03304d;
+    }
 
     .header img{
         float: left;
         width: 100px;
         height: 100px;
-        margin-top: -32px;
-    }
-
-    .header h1{
-        position: relative;
-        top: 18px;
-        left: 10px;  
     }
 
     .generate_button{
         text-align: center;
+        border: none;
+        border-radius: 25px;
+        background-color: rgb(6, 85, 174);
+        width: 25%;
+        padding-top: 10px;
+        padding-bottom: 10px;
     }
 
     .evaluate_button{
         text-align: center;
+        border: none;
+        border-radius: 25px;
+        background-color: rgb(6, 85, 174);
+        width: 25%;
+        padding-top: 10px;
+        padding-bottom: 10px;
     }
 
     .font{
         font-family: 'Quicksand', sans-serif;
     }
 
+    .header{
+        text-indent: 30px;
+        vertical-align: top;
+    }
+
+    .font-title{
+        font-family: 'Quicksand', sans-serif;
+        font-size: 50px;
+        color: white;
+    }
+
+    .container {
+        display: flex;
+        align-items: center;
+    }
+
+    a{
+        font-size: 30px;
+        color: white;
+    }
+
+    a:link{
+        text-decoration: none;
+    }
+
+
 </style>
 <body>  
     <script src="https://cdn.socket.io/socket.io-3.0.0.js"></script>
     <script src="./client.js"></script>
-    <div class="font header">
-        <h1>PassGuardian<img src="./assets/PassGuardianLogo1.PNG" alt="logo" /></h1>
+    <div class="header">
+        <h1 class="font-title container">PassGuardian<img src="./assets/PassGuardianLogo1.PNG" alt="logo" /></h1>
     </div>
 
 <br>
 <br>
 <br>
 <br>
-<div class="font generate_button">
-    <a href="./html/passwordgenerationpage.html"> Generate</a>
-</div>
-<br>
-<br>
-
-<div class="font evaluate_button">
-    <a href="./html/passwordevaluationpage.html">Evaluate</a>
-</div>
+<center>
+    <div class="font generate_button">
+        <a href="./html/passwordgenerationpage.html"> Generate Password</a>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="font evaluate_button">
+        <a href="./html/passwordevaluationpage.html">Evaluate Password</a>
+    </div>
+</center>
 </body>
 
 </html>

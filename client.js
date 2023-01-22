@@ -68,8 +68,12 @@ function submitEvaluate(password){
     document.getElementById("output").appendChild(progressBar);
     var id = setInterval(frame, 10);
     var width = 0;
+    var percentage = (time/2)*100;
+    if (percentage > 100){
+        percentage = 100;
+    }
     function frame() {
-        if (width >= (time/2)*100) {
+        if (width >= percentage) {
             clearInterval(id);
         } else {
             width++;

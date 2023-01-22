@@ -18,3 +18,9 @@ function submitGenerate(length,uppercase,symbols,numbers){
     });
 
 }
+
+function submitEvaluate(password){
+    socket.emit("Evaluate", password, (response) =>{
+        console.log(response.status);
+    });
+}

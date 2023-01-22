@@ -2,8 +2,9 @@
 
 const httpServer = require("http").createServer();
 const io =require("socket.io")(httpServer, {
-  cors: { origin: "http://137.184.74.124",methods: ["GET", "POST"] }
+  cors: { origin: ["http://137.184.74.124", "http://passguardian.tech"],methods: ["GET", "POST"] }
 });
+
 
 // LIBRARY DECLARATION
 

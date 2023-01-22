@@ -58,28 +58,24 @@ function submitEvaluate(password){
     var time = Math.pow(numberofPos,password.length)/1000000000;
     time = time/3600/24/365;
     
-    var bar = document.createElement("div");
-    bar.className = "progress-bar";
-    document.appendChild(bar);
+    console.log(time);
+
+    var progressBar = document.createElement("div");
+    progressBar.setAttribute("class", "progressBar");
     var progress = document.createElement("div");
-    progress.className = "bar";
-    progress.style.width = "0%";
-    bar.appendChild(progress);
-    var text = document.createElement("p");
-    text.innerHTML = time;
-    bar.appendChild(text);
+    progress.setAttribute("class", "progress");
+    progressBar.appendChild(progress);
+    document.getElementById("output").appendChild(progressBar);
     var id = setInterval(frame, 10);
+    var width = 0;
     function frame() {
-        if (width >= 100) {
+        if (width >= (time/2)*100) {
             clearInterval(id);
         } else {
             width++;
-            progress.style.width = width + '%';
-            text.innerHTML = width * 1 + '%';
+            progress.style.width = width + "%";
         }
     }
-
-
 
     socket.emit("Evaluate", password, (response) =>{
         console.log(response.status);

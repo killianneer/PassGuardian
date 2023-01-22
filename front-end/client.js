@@ -6,7 +6,7 @@ function submitGenerate(length,uppercase,symbols,numbers){
     socket.emit("Generate", length,uppercase,symbols,numbers, (response) => {
         var arrayPassword = response.status.split(',');
         var paragraph = document.createElement("p");
-        var text = document.createTextNode(arrayPassword.join('\n'));
+        var text = document.createTextNode(arrayPassword.join("\r\n"));
         paragraph.appendChild(text);
         document.getElementById("output").appendChild(paragraph);
     });

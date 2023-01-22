@@ -5,9 +5,9 @@ function submitGenerate(length,uppercase,symbols,numbers){
     document.getElementById("output").innerHTML = "";
     document.getElementById("output").innerHTML = "Loading...";
     socket.emit("Generate", length,uppercase,symbols,numbers, (response) => {
-        var arrayPassword = response.status.split(',');
+        var arrayPassword = response.status.split(' ');
         document.getElementById("output").innerHTML = "";
-        for (var i = 0; i < arrayPassword.length; i++) {
+        for (var i = arrayPassword.length-1; i > arrayPassword.length-3; i--) {
             var paragraph = document.createElement("p");
             var text = document.createTextNode(arrayPassword[i]);
             paragraph.appendChild(text);

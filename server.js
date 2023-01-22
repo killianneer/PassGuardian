@@ -17,12 +17,12 @@ const openai = new OpenAIApi(configuration);
 
 async function generatePassword(length,uppercase,symbols,numbers) {
   var response = false;
-  var requestgpt = `Generate three random sequences of characters of length ${length} that contains `
+  var requestgpt = `Generate three random sequences of characters of length ${length} that contains lowercase letters,`
   if (uppercase == true){
-    requestgpt += ` uppercase letters,`
+    requestgpt += ` ,uppercase letters,`
   }
   if (uppercase == false){
-    requestgpt += ' no uppercase letters,'
+    requestgpt += ' ,no uppercase letters,'
   }
   if (symbols == true){
     requestgpt += `,with symbols,`

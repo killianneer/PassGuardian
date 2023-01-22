@@ -17,35 +17,36 @@ const openai = new OpenAIApi(configuration);
 
 async function generatePassword(length,uppercase,symbols,numbers) {
   var response = false;
-  var requestgpt = `Generate three random sequences of characters of length ${length} that contains lowercase letters,`
-  if (uppercase == true){
-    requestgpt += ` ,uppercase letters,`
-  }
+  var firstFalse = false;
+  var requestgpt = `Generate three secure passwords from words that are related with the keyword ${length}. Feel free to use any character types.`
+
   if (uppercase == false){
-    requestgpt += ' ,no uppercase letters,'
+    if (firstFalse == false){
+      requestgpt += "However, here's what you cannot use: "
+      firstFalse = true;
+    }
+    requestgpt += ' , capital letters'
   }
-  if (symbols == true){
-    requestgpt += `,with symbols,`
-  }
+
   if (symbols == false){
-    requestgpt += ` ,no symbols,`
+    requestgpt += ` , non alphanumeric characters`
   }
-  if (numbers == true){
-    requestgpt += ` and numbers.`
-  }
+
   if (numbers == false){
-    requestgpt += `and no numbers.`
+    requestgpt += ` , numbers`
   }
 
   console.log(requestgpt)
   var gpt = await openai.createCompletion({
     model: "text-davinci-003",
     prompt: requestgpt,
-    temperature: 0.6,
+    temperature: 0.62,
     max_tokens: 256,
   });
   response = gpt.data.choices[0].text;
-  console.log(response);
+  if (uppercase == false){
+    response = response.toLowerCase();
+  }
   return response;
 }
 

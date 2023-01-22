@@ -47,12 +47,15 @@ function submitEvaluate(password){
     }
     var numberofPos = 26;
     if (containsSpecialChar == true){
+        console.log("contains special char");
         numberofPos += 32;
     }
     if (containsNumber == true){
+        console.log("contains number");
         numberofPos += 10;
     }
     if (containsUppercase == true){
+        console.log("contains uppercase");
         numberofPos += 26;
     }
     var time = Math.pow(numberofPos,password.length)/1000000000;
@@ -66,20 +69,24 @@ function submitEvaluate(password){
     progress.setAttribute("class", "progress");
     progressBar.appendChild(progress);
     document.getElementById("output").appendChild(progressBar);
-    var id = setInterval(frame, 10);
-    var width = 0;
     var percentage = (time/2)*100;
     if (percentage > 100){
         percentage = 100;
     }
-    function frame() {
-        if (width >= percentage) {
-            clearInterval(id);
-        } else {
-            width++;
-            progress.style.width = width + "%";
-        }
+
+    if (percentage <=30){
+        progress.setAttribute("style", "background-color: #ff0000;");
+
     }
+    else if (percentage <= 60){
+        progress.setAttribute("style", "background-color: #ffff00;");
+     }
+    else
+        {
+        progress.setAttribute("style", "background-color: #00ff00;");
+    }
+    progress.setAttribute("width", percentage + "%");
+
 
     socket.emit("Evaluate", password, (response) =>{
         console.log(response.status);

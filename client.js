@@ -5,6 +5,7 @@ function submitGenerate(length,uppercase,symbols,numbers){
     document.getElementById("output").innerHTML = "";
     document.getElementById("output").innerHTML = "Loading...";
     socket.emit("Generate", length,uppercase,symbols,numbers, (response) => {
+        console.log(response.status);
         var arrayPassword = response.status.split(' ');
         document.getElementById("output").innerHTML = "";
         for (var i = arrayPassword.length-1; i >= arrayPassword.length-3; i--) {

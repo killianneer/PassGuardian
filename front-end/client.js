@@ -5,7 +5,10 @@ function submitGenerate(length,uppercase,symbols,numbers){
     console.log("kss ert el dans le client")
     socket.emit("Generate", length,uppercase,symbols,numbers, (response) => {
         var arrayPassword = response.status.split(',');
-        arrayPassword.toString();
+        var paragraph = document.createElement("p");
+        var text = document.createTextNode(arrayPassword.join());
+        paragraph.appendChild(text);
+        document.getElementById("output").appendChild(paragraph);
     });
 
 }

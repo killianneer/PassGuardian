@@ -61,7 +61,7 @@ async function generatePassword(length,uppercase,symbols,numbers) {
 
 async function evaluatePassword(password) {
   var response = false;
-  var length = password.length();
+  var length = password.length;
   var requestgpt = `How long would it take to crack the password: ${password}, knowing it is a ${length} character long password and a computer can test 10000000 passcodes per second. Provide details and time to crack using brute-force.`;
 
   console.log(requestgpt)
@@ -84,17 +84,13 @@ io.on("connection", (socket) => {
     console.log(result);
     callback({status: result});
     });
-
+    socket.on("Evaluate",async(password, callback) => {
+      const result = await evaluatePassword(password);
+      console.log(result);
+      callback({status: result});
+      });
 });
 
-io.on("connection", (socket) => {
-  socket.on("Evaluate",async(password, callback) => {
-  const result = await evaluatePassword(password);
-  console.log(result);
-  callback({status: result});
-  });
-
-});
 // PORT CONFIG + ON READY LOG
 console.log("Server : OK");
 httpServer.listen(3000);

@@ -20,6 +20,67 @@ function submitGenerate(length,uppercase,symbols,numbers){
 }
 
 function submitEvaluate(password){
+    //check if password contains special characters
+    var specialChars = "<>@!#$%^&*()_+[]{}?:;|'\"\\,./~`-=";
+    var containsSpecialChar = false;
+    for (var i = 0; i < password.length; i++) {
+        if (specialChars.indexOf(password.charAt(i)) != -1) {
+            containsSpecialChar = true;
+            break;
+        }
+    }
+    // check if password contains numbers
+    var containsNumber = false;
+    for (var i = 0; i < password.length; i++) {
+        if (!isNaN(password.charAt(i))) {
+            containsNumber = true;
+            break;
+        }
+    }
+    // check if password contains uppercase
+    var containsUppercase = false;
+    for (var i = 0; i < password.length; i++) {
+        if (password.charAt(i) == password.charAt(i).toUpperCase()) {
+            containsUppercase = true;
+            break;
+        }
+    }
+    var numberofPos = 26;
+    if (containsSpecialChar == true){
+        numberofPos += 32;
+    }
+    if (containsNumber == true){
+        numberofPos += 10;
+    }
+    if (containsUppercase == true){
+        numberofPos += 26;
+    }
+    var time = Math.pow(numberofPos,password.length)/1000000000;
+    time = time/3600/24/365;
+    
+    var bar = document.createElement("div");
+    bar.className = "progress-bar";
+    document.appendChild(bar);
+    var progress = document.createElement("div");
+    progress.className = "bar";
+    progress.style.width = "0%";
+    bar.appendChild(progress);
+    var text = document.createElement("p");
+    text.innerHTML = time;
+    bar.appendChild(text);
+    var id = setInterval(frame, 10);
+    function frame() {
+        if (width >= 100) {
+            clearInterval(id);
+        } else {
+            width++;
+            progress.style.width = width + '%';
+            text.innerHTML = width * 1 + '%';
+        }
+    }
+
+
+
     socket.emit("Evaluate", password, (response) =>{
         console.log(response.status);
     });

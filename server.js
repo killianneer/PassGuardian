@@ -59,6 +59,22 @@ async function generatePassword(length,uppercase,symbols,numbers) {
   return response;
 }
 
+async function evaluatePassword(password) {
+  var response = false;
+  var length = password.length();
+  var requestgpt = `How long would it take to crack the password: ${password}, knowing it is a ${length} character long password and a computer can test 10000000 passcodes per second. Provide details and time to crack using brute-force.`;
+
+  console.log(requestgpt)
+  var gpt = await openai.createCompletion({
+    model: "text-davinci-003",
+    prompt: requestgpt,
+    temperature: 0.2,
+    max_tokens: 512,
+  });
+  response = gpt.data.choices[0].text;
+  console.log(response);
+  return response;
+}
 
 // EVENTS
 
@@ -71,6 +87,14 @@ io.on("connection", (socket) => {
 
 });
 
+io.on("connection", (socket) => {
+  socket.on("Evaluate",async(password, callback) => {
+  const result = await evaluatePassword(password);
+  console.log(result);
+  callback({status: result});
+  });
+
+});
 // PORT CONFIG + ON READY LOG
 console.log("Server : OK");
 httpServer.listen(3000);

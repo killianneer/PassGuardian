@@ -20,6 +20,7 @@ function submitGenerate(length,uppercase,symbols,numbers){
 }
 
 function submitEvaluate(password){
+    document.getElementById("output").innerHTML = "";
     //check if password contains special characters
     var specialChars = "<>@!#$%^&*()_+[]{}?:;|'\"\\,./~`-=";
     var containsSpecialChar = false;
@@ -58,7 +59,7 @@ function submitEvaluate(password){
         console.log("contains uppercase");
         numberofPos += 26;
     }
-    var time = Math.pow(numberofPos,password.length)/1000000000;
+    var time = Math.pow(numberofPos,password.length)/2000000000;
     time = (((time/3600)/24)/365);
     
     console.log(time);
@@ -73,7 +74,7 @@ function submitEvaluate(password){
     if (percentage > 100){
         percentage = 100;
     }
-
+    console.log(percentage);
     if (percentage <=30){
         progress.setAttribute("style", "background-color: #ff0000;");
 
@@ -86,9 +87,12 @@ function submitEvaluate(password){
         progress.setAttribute("style", "background-color: #00ff00;");
     }
     progress.setAttribute("width", percentage + "%");
-
+    
 
     socket.emit("Evaluate", password, (response) =>{
-        console.log(response.status);
+            var paragraph = document.createElement("p");
+            var text = document.createTextNode(response.status);
+            paragraph.appendChild(text);
+            document.getElementById("output").appendChild(paragraph);
     });
 }

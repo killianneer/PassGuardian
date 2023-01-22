@@ -86,8 +86,13 @@ function submitEvaluate(password){
         {
         progress.setAttribute("style", "background-color: #00ff00;");
     }
-    progress.setAttribute("width", percentage + "%");
+    progress.style.width = percentage + "%";
     
+    var paragraph = document.createElement("p");
+    var text = document.createTextNode(`The password will take ${time} years to crack.`);
+    paragraph.appendChild(text);
+    document.getElementById("output").appendChild(paragraph);
+
 
     socket.emit("Evaluate", password, (response) =>{
             var paragraph = document.createElement("p");

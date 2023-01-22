@@ -54,7 +54,6 @@ async function generatePassword(length,uppercase,symbols,numbers) {
 
 io.on("connection", (socket) => {
     socket.on("Generate",async(length,uppercase,symbols,numbers, callback) => {
-    console.log("kss ert el dans le serveur")
     const result = await generatePassword(length,uppercase,symbols,numbers);
     console.log(result);
     callback({status: result});

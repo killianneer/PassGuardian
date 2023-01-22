@@ -38,13 +38,15 @@ async function generatePassword(length,uppercase,symbols,numbers) {
   }
 
   console.log(requestgpt)
-  response = await openai.createCompletion({
+  var gpt = await openai.createCompletion({
     model: "text-davinci-003",
     prompt: requestgpt,
     temperature: 0.7,
     max_tokens: 256,
   });
-  setTimeout(() => {  console.log(response["data"]["choices"][0]["text"]);return response["data"]["choices"][0]["text"] }, 500);
+  response = gpt.data.choices[0].text;
+  console.log(response);
+  return response;
 }
 
 
@@ -53,7 +55,8 @@ async function generatePassword(length,uppercase,symbols,numbers) {
 io.on("connection", (socket) => {
     socket.on("Generate",async(length,uppercase,symbols,numbers, callback) => {
     console.log("kss ert el dans le serveur")
-    var result = await generatePassword(length,uppercase,symbols,numbers);
+    const result = await generatePassword(length,uppercase,symbols,numbers);
+    console.log(result);
     callback({status: result});
     });
 

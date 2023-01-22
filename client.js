@@ -56,7 +56,7 @@ function submitEvaluate(password){
         numberofPos += 26;
     }
     var time = Math.pow(numberofPos,password.length)/1000000000;
-    time = time/3600/24/365;
+    time = (((time/3600)/24)/365);
     
     console.log(time);
 

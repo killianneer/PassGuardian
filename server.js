@@ -47,6 +47,12 @@ async function generatePassword(length,uppercase,symbols,numbers) {
   if (uppercase == false){
     response = response.toLowerCase();
   }
+  if (symbols == false){
+    response = response.replace(/[^a-zA-Z0-9 ]/g, "");
+  }
+  if (numbers == false){
+    response = response.replace(/[0-9]/g, "");
+  }
   return response;
 }
 
